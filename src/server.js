@@ -30,10 +30,10 @@ mongoose.connect(
 )
 
 // Cria uma variável "io" dentro do "req" disponível em toda apliação
-app.use((req, res) => {
+app.use((req, res, next) => {
   req.io = io
 
-  return res.next()
+  return next()
 })
 
 app.use(express.json())
