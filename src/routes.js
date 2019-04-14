@@ -8,6 +8,11 @@ const routes = express.Router()
 const BoxController = require('./controllers/BoxController')
 const FileController = require('./controllers/FileController')
 
+// Default route
+routes.get('/', (req, res) => {
+  return res.json({msg: "It work"})
+})
+
 // Boxes
 routes.get('/boxes', BoxController.all)
 routes.get('/boxes/:id', BoxController.show)
