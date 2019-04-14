@@ -19,7 +19,6 @@ routes.get('/boxes/:id', BoxController.show)
 routes.post('/boxes', BoxController.store)
 
 // Files
-routes.get('/boxes/:id/files', FileController.all)
 routes.post(
   '/boxes/:id/files',
   multer(multerConfig).single('file'),

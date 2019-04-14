@@ -2,18 +2,22 @@ const Box = require('../models/Box')
 const File = require('../models/File')
 
 class FileController {
-  async all(req, res) {
-    const box = await Box.findById(req.params.id).populate('files')
-
-    return res.json(box.files)
-  }
-
   async store(req, res) {
-    const box = await Box.findById(req.params.id)
+    const {
+      params: { id: boxId },
+      file: reqFile
+    } = req
+
+    if (!reqFile || !reqFile.originalname || !reqFile.key) {
+      res.status(422)
+      return res.json({ error: 'Arquivo inválido' })
+    }
+
+    const box = await Box.findById(boxId)
 
     const file = await File.create({
-      title: req.file.originalname,
-      path: req.file.key
+      title: reqFile.originalname,
+      path: reqFile.key
     })
 
     box.files.push(file)

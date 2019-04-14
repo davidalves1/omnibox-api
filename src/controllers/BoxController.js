@@ -23,6 +23,11 @@ class BoxController {
       }
     } = req
 
+    if (!title) {
+      res.status(422)
+      return res.json({ error: 'É preciso informar um título' })
+    }
+
     const box = await Box.create({ title })
     return res.json(box)
   }
