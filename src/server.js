@@ -43,4 +43,6 @@ app.use('/files', express.static(path.resolve(__dirname, '..', 'tmp')))
 
 app.use(routes)
 
-server.listen(3001, console.log('Lintening on port 3001'))
+const port = process.env.PORT || 3001
+
+server.listen(port, console.log(`Lintening on port ${port}`))
