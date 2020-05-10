@@ -10,7 +10,10 @@ const FileController = require('./controllers/FileController')
 
 // Default route
 routes.get('/', (req, res) => {
-  return res.json({msg: "It work"})
+  return res.json({
+    msg: 'Sucesso',
+    body: request.body
+  })
 })
 
 // Boxes
